@@ -12,7 +12,9 @@ body{
 	padding: 0;
 }
 .navigate{
+	position: fixed;
 	margin:0 0;
+	
 }
 .navigate ul {	
 	list-style: none;
@@ -35,15 +37,6 @@ body{
 .navigate ul li a:hover {
 	background-color: #6D3169;
 }
-p{
-	display: block;
-}
-img{
-	display: block;
-}
-span{
-	color: black;
-}
 h3{
 	margin: 15px 20px;
 }
@@ -53,11 +46,21 @@ h3 a{
 .about{
 	font-family:"Microsoft YaHei",微软雅黑,"MicrosoftJhengHei",华文细黑,STHeiti,MingLiu;
 	font-size: 20px;
-	margin: 20px 18px;
+	margin: 68px 18px 20px 18px;
 }
 .portfolio{
 	background-color: #333;
 	color: black;
 	padding: 20px 18px;
 	font-size: 20px;
+}
+p{
+	font-size: 20px;
+}
+.button{
+	height: 50px;
+	width: 50px;
+}
+h1{
+	margin-left: 200px;
 }
