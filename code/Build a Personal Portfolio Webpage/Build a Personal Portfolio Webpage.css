@@ -1,0 +1,63 @@
+* {
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+}
+body{
+	background: #888888;
+}
+.container{
+	background-color: #AAAAAA;
+	margin: 0px auto; 
+	padding: 0;
+}
+.navigate{
+	margin:0 0;
+}
+.navigate ul {	
+	list-style: none;
+	background-color: #333;
+	overflow: auto;
+	margin: 0;
+	padding: 0;
+}
+.navigate ul li{
+	float: left;
+}
+.navigate ul li a{
+	display: block;
+	font-family: sans-serif;
+	color: white;
+	padding: 14px 16px;
+	text-align: center;
+	text-decoration: none;
+}
+.navigate ul li a:hover {
+	background-color: #6D3169;
+}
+p{
+	display: block;
+}
+img{
+	display: block;
+}
+span{
+	color: black;
+}
+h3{
+	margin: 15px 20px;
+}
+h3 a{
+	color: black;
+}
+.about{
+	font-family:"Microsoft YaHei",微软雅黑,"MicrosoftJhengHei",华文细黑,STHeiti,MingLiu;
+	font-size: 20px;
+	margin: 20px 18px;
+}
+.portfolio{
+	background-color: #333;
+	color: black;
+	padding: 20px 18px;
+	font-size: 20px;
+}
