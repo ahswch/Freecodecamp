@@ -64,6 +64,26 @@ p{
 h1{
 	margin-left: 200px;
 }
-img{
+.aboutimg{
 	margin: auto;
 }
+.doyoudo{
+	width: 350px;
+    float: left;
+}
+.gakki{
+	width: 350px;
+    float: left;
+}
+.danmu{
+	width: 350px;
+    float: left;
+}
+h4{
+	clear: both;
+}
+/*.imgct ::after{
+	content: '';
+	display: block;
+	clear: both;
+}*/
