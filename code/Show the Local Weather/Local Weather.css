@@ -1,0 +1,27 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body{
+    font-family: 'Comic Sans MS';
+}
+.container{
+    height: 950px;
+    width: 100%;
+    background-color: rgb(125, 128, 127);
+}
+h1{
+    height: 20%;
+}
+.weather{
+    height: 80%;
+    background-color: #EDEDED;
+    border-radius: 8px;
+    padding: 20px 20px;
+}
+footer{
+    margin: auto;
+    background-color: #0D493B;
+    color: white;
+}
