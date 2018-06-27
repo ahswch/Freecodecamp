@@ -22,4 +22,4 @@
   + css
   + bootstrap
   + jquery
-  + javascript
+
