@@ -29,8 +29,14 @@ h2{
 .session{
     margin-left: 50%
 }
+.set{
+    cursor:pointer;
+}
 .set:hover{
     color: gray;
+}
+.svalue, .bvalue{
+    font-family: monospace;
 }
 .show{
     height: 380px;
@@ -42,11 +48,14 @@ h2{
     font-family: monospace;
 }
 .time{
-    margin-top: 100px;
+    margin-top: 80px;
     font-size: 100px;
 }
 .btn{
     width : 100px;
     height : 40px;
     margin : 20px;
+}
+p{
+    font-size: 30px;
 }
