@@ -1,8 +1,134 @@
-/*
-    失败
-*/
 $(document).ready(function(){
-    $(".min").html($(".svalue").html());
+    var smin=25;
+    var bmin=5;
+    var sec=0;
+    var time;
+    var timemark=true;
+    var change =true;
+    $(".bsubt").click(function () {
+        bmin=$(".bvalue").html();
+        if(timemark===true){
+            bmin--;
+            if(bmin<1){
+                bmin=1;
+            }
+            $(".bvalue").html(bmin);
+        }
+    });
+    $(".bplus").click(function () {
+        bmin=$(".bvalue").html();
+        if(timemark===true){
+            bmin++;
+            if(bmin>60){
+                bmin=60;
+            }
+            $(".bvalue").html(bmin);
+        }
+    });
+    $(".ssubt").click(function () {
+        smin=$(".svalue").html();
+        if(timemark===true){
+            smin--;
+            if(smin<1){
+                smin=1;
+            }
+            $(".svalue").html(smin);
+        }
+    });
+    $(".splus").click(function () {
+        smin=$(".svalue").html();
+        if(timemark===true){
+            smin++;
+            if(smin>60){
+                smin=60;
+            }
+            $(".svalue").html(smin);
+        }
+    });
+    function start(){
+      
+        if(change===true){
+            $("p").html('session');
+            if(sec===0){
+                sec=60;
+                smin--;
+            }
+            sec--;
+            if(sec<10){
+                console.log(smin+'0'+sec);
+                $(".sec").html('0'+sec);
+            }
+            else{
+                console.log(smin+''+sec);
+                $(".sec").html(sec);
+            }
+            if(smin<10){
+                $(".min").html('0'+smin);
+            }
+            else{
+                $(".min").html(smin);
+            }
+            if(smin==0&&sec==0){
+                smin=$(".svalue").html();
+                change=false;
+                console.log(change);
+            }
+        }
+        else{
+            $("p").html('break');
+            if(sec===0){
+                sec=60;
+                bmin--;
+            }
+            sec--;
+            if(sec<10){
+                console.log(bmin+'0'+sec);
+                $(".sec").html('0'+sec);
+            }
+            else{
+                console.log(bmin+''+sec);
+                $(".sec").html(sec);
+            }
+            if(bmin<10){
+                $(".min").html('0'+bmin);
+            }
+            else{
+                $(".min").html(bmin);
+            }
+            if(bmin==0&&sec==0){
+                bmin=$(".bvalue").html();
+                change=true;
+                console.log(change);
+            }
+        }
+      }
+      $("#start").click(function(){
+        console.log('start');
+        if(timemark===true){
+            timemark=false;
+            $(this).html('Pause');
+            time =setInterval(start,10);
+        }
+        else{
+            timemark=true;
+            $(this).html('Start');
+            clearInterval(time);
+        }
+      });
+      $("#reset").click(function(){
+                timemark=true;
+                $("#start").html('Start');
+                clearInterval(time);
+                smin=$(".svalue").html();
+                bmin=$(".bvalue").html();
+                sec=0;
+                $(".min").html(smin);
+                $(".sec").html('0'+sec);
+    });
+  });
+  
+  /* 失败
+        $(".min").html($(".svalue").html());
     var sessionv=$(".svalue").html();
     var breakv=$(".bvalue").html();
     console.log(sessionv[0]);
@@ -132,4 +258,4 @@ $(document).ready(function(){
             $(".sec").html(sec1+''+sec2);
         }
     });
-  });
+  */
