@@ -1,13 +1,13 @@
 $(document).ready(function(){
-    var smin=25;
-    var bmin=5;
-    var sec=0;
-    var time;
-    var timemark=true;
-    var change =true;
-    $(".bsubt").click(function () {
+    var smin=25;//session时间-分钟
+    var bmin=5;//break时间-分钟
+    var sec=0;//秒数
+    var time;//定时器变量
+    var timemark=true;//start和pause状态标记
+    var change =true;//session状态和break状态标记
+    $(".bsubt").click(function () {//减少break时间，点一次减一分
         bmin=$(".bvalue").html();
-        if(timemark===true){
+        if(timemark===true){//在pasue状态才能进行设定时间操作
             bmin--;
             if(bmin<1){
                 bmin=1;
@@ -15,7 +15,7 @@ $(document).ready(function(){
             $(".bvalue").html(bmin);
         }
     });
-    $(".bplus").click(function () {
+    $(".bplus").click(function () {//增加break时间，点击一次增加一分钟
         bmin=$(".bvalue").html();
         if(timemark===true){
             bmin++;
@@ -25,7 +25,7 @@ $(document).ready(function(){
             $(".bvalue").html(bmin);
         }
     });
-    $(".ssubt").click(function () {
+    $(".ssubt").click(function () {//减少session时间，点一次减一分
         smin=$(".svalue").html();
         if(timemark===true){
             smin--;
@@ -35,7 +35,7 @@ $(document).ready(function(){
             $(".svalue").html(smin);
         }
     });
-    $(".splus").click(function () {
+    $(".splus").click(function () {//增加session时间，点击一次增加一分钟
         smin=$(".svalue").html();
         if(timemark===true){
             smin++;
@@ -45,9 +45,9 @@ $(document).ready(function(){
             $(".svalue").html(smin);
         }
     });
-    function start(){
+    function start(){//开始计时函数。循环session和break计时
       
-        if(change===true){
+        if(change===true){//session计时状态
             $("p").html('session');
             if(sec===0){
                 sec=60;
@@ -74,7 +74,7 @@ $(document).ready(function(){
                 console.log(change);
             }
         }
-        else{
+        else{//break计时状态
             $("p").html('break');
             if(sec===0){
                 sec=60;
@@ -102,20 +102,20 @@ $(document).ready(function(){
             }
         }
       }
-      $("#start").click(function(){
+      $("#start").click(function(){//点击开始按钮
         console.log('start');
-        if(timemark===true){
+        if(timemark===true){//开始
             timemark=false;
-            $(this).html('Pause');
-            time =setInterval(start,10);
+            $(this).html('Pause');//按钮由显示start转为为显示pause
+            time =setInterval(start,1000);//开始计时.1000ms=1s
         }
-        else{
+        else{//暂停
             timemark=true;
-            $(this).html('Start');
-            clearInterval(time);
+            $(this).html('Start');//按钮由显示pause转为为显示start
+            clearInterval(time);//暂停计时
         }
       });
-      $("#reset").click(function(){
+      $("#reset").click(function(){//点击重置
                 timemark=true;
                 $("#start").html('Start');
                 clearInterval(time);
