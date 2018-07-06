@@ -1,5 +1,29 @@
 $(document).ready(function(){
-    var temp='';
+    var display='';
+    $(".normal").click(function(){
+        display +=$(this).html();
+        if(display.length>14){
+            $(".result").html(display.slice(0,14)+'...');
+        }
+        else{
+            $(".result").html(display);
+        }
+    });
+    $("#ac").click(function(){
+        display="";
+        $(".result").empty()
+    });
+    $("#ce").click(function(){
+        display=display.slice(0,-1);
+        $(".result").html(display);
+    });
+    $("#equa").click(function(){
+        $(".result").html(eval(display));
+        
+    });
+  });
+/*
+  var temp='';
     $(".num").click(function(){
         temp+=$(this).html();
         if(temp.length>14){
@@ -25,5 +49,4 @@ $(document).ready(function(){
     $("#ans").click(function(){
         temp=$(".result").html();
     });
-  });
-  
+ */ 

@@ -1,37 +1,43 @@
 $(document).ready(function(){
-    var userNames = ["freecodecamp", "storbeck", "terakilobyte", "habathcx","RobotCaleb","thomasballinger","ESL_SC2","noobs2ninjas","beohoff"];
+    var user = ["food","freecodecamp", "storbeck", "terakilobyte", "habathcx","RobotCaleb","thomasballinger","ESL_SC2","noobs2ninjas","beohoff"];
     function makeurl(username){
         return "https://api.twitch.tv/kraken/streams/" +username+ "?client_id=nuauwmfr41xjq0khktqfkjfs58dtr2";
     }
-    userNames.forEach(function(userNmae){
+    
+    function getDate(val){//获取数据，并输出
         $.ajax({
-            url:makeurl(userNmae),
+            url:makeurl(val),
             type:'get',
             dataType:'jsonp',
             success: function(data){
-                if(data.stream !== null){
-                    console.log(data.stream.game);
-                    var html = "<div class='all on'><img class='img' src="+data.stream.channel.logo+"><div class='text text-center'><h3><a target='_blank' href="+data.stream.channel.url+">"+data.stream.channel.name+"</a></h3><p>"+data.stream.channel.game+":"+data.stream.channel.status+"</p></div></div>"
-                    $(".main").append(html);
+                if(data.stream !==null){
+                    var temp=data.stream.channel;
+                    var display="<div class='all on'><img class='img' src="+temp.logo+"><div class='text text-center'><h3><a target='_blank' href="+temp.url+">"+temp.name+"</a></h3><p>"+temp.game+":"+temp.status+"</p></div></div>";
+                    $(".main").append(display);
                 }
-                else if(data.stream === null){
+                else{
                     $.ajax({
-                        url:'https://api.twitch.tv/kraken/channels/'+userNmae+'?client_id=nuauwmfr41xjq0khktqfkjfs58dtr2',
+                        url:'https://api.twitch.tv/kraken/channels/'+val+'?client_id=nuauwmfr41xjq0khktqfkjfs58dtr2',
                         type:'get',
                         dataType:'jsonp',
                         success: function(data){
                             console.log(data.display_name+'666');
-                            var html="<div class='all off'><img class ='img' src="+ data.logo + "><div class = 'text-center text'><a target = '_blank' href ="+ data.url +"><h3>"+ data.name +"</h3></a><p>offline</p></div></div>";
-                            $(".main").append(html);
+                            var temp="<div class='all off'><img class ='img' src="+ data.logo + "><div class = 'text-center text'><a target = '_blank' href ="+ data.url +"><h3>"+ data.name +"</h3></a><p>offline</p></div></div>";
+                            $(".main").append(temp);
                         }
                     });
                 }
             },
-            error : function(){
-                alert("error");
-              }
+            error: function(){
+                alert('error');
+            }
         });
-    });
+    }
+    
+    for(var i=0;i<user.length;i++){//遍历user数组
+        getDate(user[i]);
+    }
+    
     $(".btnall").click(function(){
         $(".all").show();
     });
@@ -43,7 +49,7 @@ $(document).ready(function(){
         $(".off").show();
         $(".on").hide();
     });
-    $(".btnsearch").click(function(){  
+    $(".btnsearch").click(function(){  //参考：https://www.freecodecamp.cn/liuboaibc
         var txt=$("#txt").val();  
         if(txt != ""){  
           $(".all").hide().filter(":contains('"+txt+"')").show();
