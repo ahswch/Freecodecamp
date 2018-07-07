@@ -31,3 +31,75 @@ body{
     color: #7D314C;
     font-size: 100px;
 }
+#x,#o{
+	width: 50px;
+	height: 50px;
+	font-size: 25px;
+	background:#eee;
+	border:1px solid #7D314C;
+	border-radius: 50%;
+	color: #7D314C;
+	margin-left: 50px;
+	margin-right: 50px;
+}
+.inc{/*参考https://freecodecamp.cn/yinyoupoet*/
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    opacity: 0.5;
+}
+.win{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    font-size: 100px;
+    text-align: center;
+    color: red;
+    display: none;
+}
+.lose{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    font-size: 100px;
+    text-align: center;
+    color: black;
+    display: none;
+}
+.tie{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    font-size: 100px;
+    text-align: center;
+    color: yellow;
+    display: none;
+}
+.choose{
+    position: relative;
+    top: 100px;
+    width: 600px;
+    height: 200px;
+    padding: 50px;
+    background-color: #BF6EE0;
+    border-radius: 10px;
+    margin: auto;
+}
+h3{
+    color: white;
+}
+#x:hover{
+    background-color: #B381B3;
+}
+#o:hover{
+    background-color: #B381B3;
+}
