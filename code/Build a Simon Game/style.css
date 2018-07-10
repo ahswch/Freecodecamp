@@ -132,5 +132,16 @@ button{
     border-radius: 5px;
     left: 36px;;
 }
-
+.win{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    font-size: 100px;
+    text-align: center;
+    color: #FF4500;
+    display: none;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
 
