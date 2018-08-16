@@ -3,9 +3,6 @@
 	padding: 0;
 	margin: 0;
 }
-body{
-	background: #888888;
-}
 .container{
 	background-color: #AAAAAA;
 	margin: 0px auto; 
@@ -13,8 +10,9 @@ body{
 }
 .navigate{
 	position: fixed;
-	margin:0 0;
-	
+	width: 100%;
+	height: 80px;
+	left: 0;
 }
 .navigate ul {	
 	list-style: none;
@@ -24,7 +22,7 @@ body{
 	padding: 0;
 }
 .navigate ul li{
-	float: left;
+	float: right;
 }
 .navigate ul li a{
 	display: block;
@@ -44,9 +42,24 @@ h3 a{
 	color: black;
 }
 .about{
-	font-family:"Microsoft YaHei",微软雅黑,"MicrosoftJhengHei",华文细黑,STHeiti,MingLiu;
+	font-family:"Microsoft YaHei",微软雅黑,"MicrosoftJhengHei",华文细黑;
 	font-size: 20px;
 	margin: 68px 18px 20px 18px;
+	padding: 30px;
+}
+.detail{
+	display: flex;
+}
+.dt,.deimg{
+	flex: 1;
+	text-align: center;
+}
+.dimg{
+	width: 400px;
+	height: auto;
+}
+.dul{
+	list-style-type: none;
 }
 .portfolio{
 	background-color: #333;
@@ -64,9 +77,6 @@ p{
 h1{
 	margin-left: 200px;
 }
-.aboutimg{
-	margin: auto;
-}
 .doyoudo{
 	width: 350px;
     float: left;
@@ -82,8 +92,10 @@ h1{
 h4{
 	clear: both;
 }
-/*.imgct ::after{
-	content: '';
-	display: block;
-	clear: both;
-}*/
+i{
+	color: wheat;
+	width: 50px;
+}
+i:hover{
+	color: aqua;
+}
