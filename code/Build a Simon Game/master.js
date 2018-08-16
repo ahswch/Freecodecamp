@@ -8,7 +8,6 @@ $(document).ready(function(){
     var allMark=false;//总开关标记
     var strictMark=false;//strict模式标记
     var startMark=false;//游戏开始标记
-    var checkMark=false;//check函数标记
     var color=['#EF4836','#03A678','#1E90FF','#B8860B'];
     $(".allstar").click(function(){//总开关
         if(allMark===false){
@@ -63,113 +62,71 @@ $(document).ready(function(){
     $("#g1").click(function(){
         run(1);
         user.push(1);
+        check();
     });
     $("#g2").click(function(){
         run(2);
         user.push(2);
+        check();
     });
     $("#g3").click(function(){
         run(3);
         user.push(3);
+        check();
     });
     $("#g4").click(function(){
         run(4);
         user.push(4);
+        check();
     });
     function runGame(){//运行游戏
         if(startMark){
-        var time;
-        var checkTime;
-        var i=0;
         comp.push(Math.floor(Math.random()*4+1));
-        time=setInterval(function(){
-            if(i<comp.length){
-                run(comp[i]);
-                i++;
-            }
-            else{
-                clearInterval(time);
-                console.log('compstop');
-            }
-            
-        },1000);//按电脑数组进行闪烁
-        
-        checkMark=false;
-        console.log(comp);
-        checkTime=setInterval(function(){//每隔1s检查用户数组与电脑数组
-            if(!checkMark){
-                console.log(user);
-                check();
-            }
-            else{
-                console.log('checkstop');
-                clearInterval(checkTime);
-                runGame();
-            }
-        },1000);
+        console.log("comp:"+ comp);
+        display(comp);//按电脑数组进行闪烁
         }
     }
     
     function check(){//检查用户数组和电脑数组
-        if(user[user.length-1]!=comp[user.length-1]){//用户点击错误
-            $("#music").attr("src","http://ydown.smzy.com/yinpin/2008-12/smzy_2008129221423146.mp3");
-			$("#allmusic")[0].pause();
-			$("#allmusic")[0].load();
-            $("#allmusic")[0].play();
-            $(".countdisp").html('!!');//警告声音
-            console.log('warning');
-            if(strictMark===false){//非strict模式，游戏面板重新按电脑数组亮起
-                checkMark=false;
-                var temp;
-                var i=0;
-                temp=setInterval(function(){
-                    if(i<comp.length){
-                        run(comp[i]);
-                        i++;
-                    }
-                    else{
-                        clearInterval(temp);
-                        console.log('compstop');
-                    }
-                    
-                },1000);
+        console.log("user:"+ user);
+        if(user.length === comp.length){ // 两数组长度相等
+            if(user[user.length-1] === comp[user.length-1]){ // 两数组相等
+                if(user.length === 4){  // 完成20关 游戏结束 目测测试设为4
+                    startMark=false;
+                    console.log('win');
+                    $(".win").fadeIn(2000);
+                    $(".win").fadeOut(1000);
+                    end();
+                    return;
+                }
+                if(user.length < 10){
+                    $(".countdisp").html('0'+comp.length);
+                }
+                else{
+                    $(".countdisp").html(comp.length);
+                }
                 user=[];
-                return;
-            }
-            else{//strict模式，游戏重新开始
-                comp=[];
-                user=[];
-                $(".countdisp").html('!!');
                 return runGame();
             }
-        }
-        else if(comp.length===20&&user.length===20){//到达20level 游戏结束
-            startMark=false;
-            checkMark=true;
-            console.log('win');
-            $(".win").fadeIn(2000);
-            $(".win").fadeOut(1000);
-            end();
-            return;
-        }
-        if(comp[comp.length-1]===user[user.length-1]){//两数组一样，此level成功，进行下一level
-            console.log(checkMark);
-            if(user.length<10){
-                $(".countdisp").html('0'+user.length);
+            else{ // 两数组不等，即用户点击错误
+                $("#music").attr("src","http://ydown.smzy.com/yinpin/2008-12/smzy_2008129221423146.mp3");
+                $("#allmusic")[0].pause();
+                $("#allmusic")[0].load();
+                $("#allmusic")[0].play();
+                $(".countdisp").html('!!');//警告声音
+                console.log('warning');
+                if(strictMark===false){//非strict模式，游戏面板重新按电脑数组亮起
+                    display(comp);
+                    user=[];
+                    return;
+                }
+                else{//strict模式，游戏重新开始
+                    comp=[];
+                    user=[];
+                    return runGame();
+                }
             }
-            else{
-                $(".countdisp").html(user.length);
-            }
-            
-            checkMark=true;
-            user=[];
-            return;
         }
-        else{//不满足上述条件，返回check循环
-            console.log('wrong');
-            return;
-        }
-        
     }
     function restart(){//重新开始游戏
         user=[];
@@ -203,4 +160,21 @@ $(document).ready(function(){
 		    $("#allmusic")[0].load();
 		    $("#allmusic")[0].play();
     }
+    function display(val) {
+        var temp;
+        var i=0;
+        temp=setInterval(function(){
+            if(i<val.length){
+                run(val[i]);
+                i++;
+            }
+            else{
+                clearInterval(temp);
+                console.log('doneDisplay');
+            }
+            
+        },1000);
+      }
+      
   });
+ 
