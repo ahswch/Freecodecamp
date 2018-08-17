@@ -87,46 +87,53 @@ $(document).ready(function(){
         }
     }
     
+    
     function check(){//检查用户数组和电脑数组
         console.log("user:"+ user);
-        if(user.length === comp.length){ // 两数组长度相等
-            if(user[user.length-1] === comp[user.length-1]){ // 两数组相等
-                if(user.length === 4){  // 完成20关 游戏结束 目测测试设为4
-                    startMark=false;
-                    console.log('win');
-                    $(".win").fadeIn(2000);
-                    $(".win").fadeOut(1000);
-                    end();
-                    return;
-                }
-                if(user.length < 10){
-                    $(".countdisp").html('0'+comp.length);
-                }
-                else{
-                    $(".countdisp").html(comp.length);
-                }
+        if(user[user.length-1] === comp[user.length-1]){ //两数组对应元素相等
+            if(user.length === comp.length){ // 且两数组长度相等 即两数组相等
+                    if(user.length === 4){  // 完成20关 游戏结束 目测测试设为4
+                        startMark=false;
+                        console.log('win');
+                        $(".win").fadeIn(2000);
+                        $(".win").fadeOut(1000);
+                        end();
+                        return;
+                    }
+                    else{
+                        showLevel();
+                        user=[];
+                        return runGame();
+                    }
+            }
+        }
+        else{
+            $("#music").attr("src","http://ydown.smzy.com/yinpin/2008-12/smzy_2008129221423146.mp3");
+            $("#allmusic")[0].pause();
+            $("#allmusic")[0].load();
+            $("#allmusic")[0].play();
+            $(".countdisp").html('!!');//警告声音
+            console.log('warning');
+            if(strictMark===false){//非strict模式，游戏面板重新按电脑数组亮起
+                display(comp);
+                user=[];
+                return;
+            }
+            else{//strict模式，游戏重新开始
+                comp=[];
                 user=[];
                 return runGame();
             }
-            else{ // 两数组不等，即用户点击错误
-                $("#music").attr("src","http://ydown.smzy.com/yinpin/2008-12/smzy_2008129221423146.mp3");
-                $("#allmusic")[0].pause();
-                $("#allmusic")[0].load();
-                $("#allmusic")[0].play();
-                $(".countdisp").html('!!');//警告声音
-                console.log('warning');
-                if(strictMark===false){//非strict模式，游戏面板重新按电脑数组亮起
-                    display(comp);
-                    user=[];
-                    return;
-                }
-                else{//strict模式，游戏重新开始
-                    comp=[];
-                    user=[];
-                    return runGame();
-                }
-            }
         }
+        
+    }
+    function showLevel(){
+        if(user.length < 10){
+            $(".countdisp").html('0'+comp.length);
+        }
+        else{
+            $(".countdisp").html(comp.length);
+        }   
     }
     function restart(){//重新开始游戏
         user=[];
